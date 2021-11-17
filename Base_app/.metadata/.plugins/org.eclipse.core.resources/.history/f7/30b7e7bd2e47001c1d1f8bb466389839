@@ -1,0 +1,46 @@
+package com.app.demo.Controllers;
+
+import java.util.ArrayList;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.demo.Modelo.MDetalle_Ventas;
+import com.app.demo.Modelo.MVentas;
+import com.app.demo.Modelo.VentasyDetalles;
+import com.app.demo.Services.SDetalle_Ventas;
+import com.app.demo.Services.SVentas;
+
+@RestController
+@RequestMapping("ventas")
+public class CVentas {
+	@Autowired
+	SVentas serVentas;
+	@Autowired
+	SDetalle_Ventas serDetalle;
+	
+	public MVentas guardar(VentasyDetalles venta) {
+		MVentas ven = serVentas.guardar(venta.getVentas());
+		int i = 0;
+		while(i<venta.getDetalles().size()) {
+			venta.getDetalles().get(i).setVenta(ven);
+			i++;
+		}
+		serDetalle.guardarTodos(venta.getDetalles());
+		return ven;
+	}
+	
+	public Optional<MVentas> obtenerPorId(Long id){
+		return serVentas.obtenerPorId(id);
+	}
+	
+	public ArrayList<MVentas> obtenerVentas(){
+		return serVentas.obtenerTodos();
+	}
+	
+	public ArrayList<MDetalle_Ventas> obtenerDetalles(){
+		return serDetalle.obtenerTodos();
+	}
+}

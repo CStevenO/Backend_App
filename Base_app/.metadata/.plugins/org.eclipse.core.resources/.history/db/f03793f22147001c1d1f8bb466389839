@@ -1,0 +1,68 @@
+package com.app.demo.Modelo;
+
+import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="producto_negocio")
+public class ProductoNegocio {
+	
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "id",nullable=false)
+	private Long id_producto;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "id",nullable=false)
+	private Long id_negocio;
+	private Float precio;
+	public ProductoNegocio() {
+	}
+	public ProductoNegocio(Long id_producto, Long id_negocio, Float precio) {
+		this.id_producto = id_producto;
+		this.id_negocio = id_negocio;
+		this.precio = precio;
+	}
+	public Long getId_producto() {
+		return id_producto;
+	}
+	public void setId_producto(Long id_producto) {
+		this.id_producto = id_producto;
+	}
+	public Long getId_negocio() {
+		return id_negocio;
+	}
+	public void setId_negocio(Long id_negocio) {
+		this.id_negocio = id_negocio;
+	}
+	public Float getPrecio() {
+		return precio;
+	}
+	public void setPrecio(Float precio) {
+		this.precio = precio;
+	}
+	@Override
+	public String toString() {
+		return "ProductoNegocio [id_producto=" + id_producto + ", id_negocio=" + id_negocio + ", precio=" + precio
+				+ "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(id_negocio, id_producto, precio);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProductoNegocio other = (ProductoNegocio) obj;
+		return Objects.equals(id_negocio, other.id_negocio) && Objects.equals(id_producto, other.id_producto)
+				&& Objects.equals(precio, other.precio);
+	}
+	
+}

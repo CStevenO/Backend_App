@@ -1,0 +1,5 @@
+package com.app.demo.Repositories;
+
+public interface RCliente {
+
+}

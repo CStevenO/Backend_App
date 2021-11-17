@@ -1,0 +1,9 @@
+package com.app.demo.Repositories;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.app.demo.Modelo.ProductoNegocio;
+
+public interface RProductoNegocio extends CrudRepository<ProductoNegocio,Long>{
+	ProductoNegocio findByProductAndBusiness(Long id_producto,Long id_negocio);
+}

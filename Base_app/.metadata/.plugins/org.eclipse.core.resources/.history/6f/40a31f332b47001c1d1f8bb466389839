@@ -1,0 +1,45 @@
+package com.app.demo.Modelo;
+
+import java.util.Objects;
+
+public class VentasyDetalles {
+	MVentas ventas;
+	MDetalle_Ventas detalle;
+	public VentasyDetalles() {
+	}
+	public VentasyDetalles(MVentas ventas, MDetalle_Ventas detalle) {
+		this.ventas = ventas;
+		this.detalle = detalle;
+	}
+	public MVentas getVentas() {
+		return ventas;
+	}
+	public void setVentas(MVentas ventas) {
+		this.ventas = ventas;
+	}
+	public MDetalle_Ventas getDetalle() {
+		return detalle;
+	}
+	public void setDetalle(MDetalle_Ventas detalle) {
+		this.detalle = detalle;
+	}
+	@Override
+	public String toString() {
+		return "VentasyDetalles [ventas=" + ventas + ", detalle=" + detalle + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(detalle, ventas);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VentasyDetalles other = (VentasyDetalles) obj;
+		return Objects.equals(detalle, other.detalle) && Objects.equals(ventas, other.ventas);
+	}
+}
