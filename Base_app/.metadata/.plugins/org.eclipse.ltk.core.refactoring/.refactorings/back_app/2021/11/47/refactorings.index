@@ -3,3 +3,5 @@
 1637090185901	Rename field 'sevNegocio'
 1637090321045	Rename field 'sevProducto'
 1637097500298	Rename field 'id'
+1637181993307	Rename type 'ProductoNegocio'
+1637182005020	Rename type 'VentasyDetalles'

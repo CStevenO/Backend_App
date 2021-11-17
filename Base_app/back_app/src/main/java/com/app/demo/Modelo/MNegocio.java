@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,16 +25,18 @@ public class MNegocio {
 	private String telefono;
 	private String celular;
 	private String pagina_web;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "id_tipo",nullable=false)
+	private MTipoNegocio tipo;
 	private String logo;
 	private String foto;
-	//TODO: Agregar el tipo de negocio
 	public MNegocio() {
 	}
 	public MNegocio(Long id) {
 		this.id = id;
 	}
 	public MNegocio(Long id, String nombre, String direccion, String geolocalizacion, String telefono, String celular,
-			String pagina_web, String logo, String foto) {
+			String pagina_web, MTipoNegocio tipo, String logo, String foto) {
 		this.id = id;
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -40,6 +44,7 @@ public class MNegocio {
 		this.telefono = telefono;
 		this.celular = celular;
 		this.pagina_web = pagina_web;
+		this.tipo = tipo;
 		this.logo = logo;
 		this.foto = foto;
 	}
@@ -85,6 +90,12 @@ public class MNegocio {
 	public void setPagina_web(String pagina_web) {
 		this.pagina_web = pagina_web;
 	}
+	public MTipoNegocio getTipo() {
+		return tipo;
+	}
+	public void setTipo(MTipoNegocio tipo) {
+		this.tipo = tipo;
+	}
 	public String getLogo() {
 		return logo;
 	}
@@ -101,12 +112,11 @@ public class MNegocio {
 	public String toString() {
 		return "MNegocio [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", geolocalizacion="
 				+ geolocalizacion + ", telefono=" + telefono + ", celular=" + celular + ", pagina_web=" + pagina_web
-				+ ", logo=" + logo + ", foto=" + foto + "]";
+				+ ", tipo=" + tipo + ", logo=" + logo + ", foto=" + foto + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(celular, direccion, foto, geolocalizacion, id, logo, nombre, pagina_web,
-				telefono);
+		return Objects.hash(celular, direccion, foto, geolocalizacion, id, logo, nombre, pagina_web, telefono, tipo);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -121,7 +131,8 @@ public class MNegocio {
 				&& Objects.equals(foto, other.foto) && Objects.equals(geolocalizacion, other.geolocalizacion)
 				&& Objects.equals(id, other.id) && Objects.equals(logo, other.logo)
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(pagina_web, other.pagina_web)
-				&& Objects.equals(telefono, other.telefono);
+				&& Objects.equals(telefono, other.telefono) && Objects.equals(tipo, other.tipo);
 	}
+	
 	
 }

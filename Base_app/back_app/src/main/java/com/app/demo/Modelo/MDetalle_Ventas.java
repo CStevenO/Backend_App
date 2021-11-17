@@ -23,16 +23,16 @@ public class MDetalle_Ventas {
 	private MVentas venta;
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "productoNegocio",nullable=false)
-	private ProductoNegocio producto;
+	private MProductoNegocio producto;
 	private int cantidad;
 	public MDetalle_Ventas() {
 	}
-	public MDetalle_Ventas(Long id, ProductoNegocio producto, int cantidad) {
+	public MDetalle_Ventas(Long id, MProductoNegocio producto, int cantidad) {
 		this.id = id;
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
-	public MDetalle_Ventas(Long id, MVentas venta, ProductoNegocio producto, int cantidad) {
+	public MDetalle_Ventas(Long id, MVentas venta, MProductoNegocio producto, int cantidad) {
 		this.id = id;
 		this.venta = venta;
 		this.producto = producto;
@@ -50,10 +50,10 @@ public class MDetalle_Ventas {
 	public void setVenta(MVentas venta) {
 		this.venta = venta;
 	}
-	public ProductoNegocio getProducto() {
+	public MProductoNegocio getProducto() {
 		return producto;
 	}
-	public void setProducto(ProductoNegocio producto) {
+	public void setProducto(MProductoNegocio producto) {
 		this.producto = producto;
 	}
 	public int getCantidad() {
